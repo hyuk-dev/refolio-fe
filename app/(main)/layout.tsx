@@ -5,7 +5,7 @@ import React from 'react';
 export default function MainLayout({
   children,
 }: Readonly<{
-  children: React.ReactElement;
+  children: React.ReactNode;
 }>) {
   return (
     <div className="flex flex-col items-center gap-5 max-w-[1580px] mx-auto">
