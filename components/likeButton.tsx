@@ -1,0 +1,28 @@
+import { useState } from 'react';
+
+interface LikeButtonProps {
+  isLiked: boolean;
+  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export default function LikeButton({ isLiked, setIsLiked }: LikeButtonProps) {
+  return (
+    <button
+      type="button"
+      className="flex items-center justify-center text-rose-500 transition hover:scale-105 cursor-pointer"
+      aria-label="찜하기"
+      aria-pressed={isLiked}
+      onClick={() => setIsLiked((prev) => !prev)}
+    >
+      <svg
+        className="h-6 w-6"
+        viewBox="0 0 24 24"
+        fill={isLiked ? 'currentColor' : 'none'}
+        stroke="white"
+        strokeWidth="2"
+        aria-hidden="true"
+      >
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41.81 4.5 2.09C12.09 4.81 13.76 4 15.5 4 18 4 20 6 20 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
+    </button>
+  );
+}

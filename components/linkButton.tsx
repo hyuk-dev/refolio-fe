@@ -8,7 +8,7 @@ export default function LinkButton({
   label: string;
 }) {
   return (
-    <Link href={`/${url}`} className="hover:border-b-2">
+    <Link href={`/${url}`} className="hover:underline">
       {label}
     </Link>
   );

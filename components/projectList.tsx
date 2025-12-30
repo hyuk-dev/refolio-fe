@@ -10,6 +10,8 @@ const projectMock = {
       category: '웹 개발',
       duration: 90,
       teamMembers: 5,
+      rating: 4.8,
+      date: '2024-06-15',
     },
     {
       id: 2,
@@ -19,6 +21,8 @@ const projectMock = {
       category: '모바일 앱',
       duration: 180,
       teamMembers: 8,
+      rating: 4.6,
+      date: '2024-05-20',
     },
     {
       id: 3,
@@ -28,6 +32,8 @@ const projectMock = {
       category: '데이터 과학',
       duration: 120,
       teamMembers: 4,
+      rating: 4.9,
+      date: '2024-04-10',
     },
     {
       id: 4,
@@ -37,6 +43,8 @@ const projectMock = {
       category: '머신 러닝',
       duration: 150,
       teamMembers: 6,
+      rating: 4.7,
+      date: '2024-03-05',
     },
     {
       id: 5,
@@ -46,6 +54,8 @@ const projectMock = {
       category: '게임 개발',
       duration: 210,
       teamMembers: 10,
+      rating: 4.5,
+      date: '2024-02-18',
     },
     {
       id: 6,
@@ -55,16 +65,19 @@ const projectMock = {
       category: '블록체인',
       duration: 240,
       teamMembers: 12,
+      rating: 4.4,
+      date: '2024-01-22',
     },
     {
       id: 7,
       title: 'Project Seven',
-
       description: 'This is the seventh project.',
       imageLink: 'https://cdn.pixabay.com/photo/2025/12/08/11/05/pinecone-10001896_1280.jpg',
       category: '사이버 보안',
       duration: 60,
       teamMembers: 3,
+      rating: 4.3,
+      date: '2023-12-30',
     },
     {
       id: 8,
@@ -74,6 +87,8 @@ const projectMock = {
       category: '클라우드 컴퓨팅',
       duration: 270,
       teamMembers: 15,
+      rating: 4.8,
+      date: '2023-11-15',
     },
   ],
 };
