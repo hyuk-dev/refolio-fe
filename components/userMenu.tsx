@@ -1,5 +1,5 @@
-import Link from "next/link";
-import LinkButton from "./linkButton";
+import Link from 'next/link';
+import LinkButton from './linkButton';
 
 export default function UserMenu() {
   return (
@@ -7,5 +7,5 @@ export default function UserMenu() {
       <LinkButton url="login" label="로그인" />
       <LinkButton url="signup" label="회원가입" />
     </div>
-  )
+  );
 }

@@ -8,7 +8,10 @@ export default function LinkButton({
   label: string;
 }) {
   return (
-    <Link href={`/${url}`} className="text-sm sm:text-base hover:underline transition-colors">
+    <Link
+      href={`/${url}`}
+      className="text-sm sm:text-base hover:underline transition-colors"
+    >
       {label}
     </Link>
   );

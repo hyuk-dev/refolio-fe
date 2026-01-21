@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState } from 'react';
 
 interface LikeButtonProps {
@@ -7,10 +7,10 @@ interface LikeButtonProps {
   variant?: 'icon' | 'count';
 }
 
-export default function LikeButton({ 
-  initialCount = 0, 
+export default function LikeButton({
+  initialCount = 0,
   initialIsLiked = false,
-  variant = 'count'
+  variant = 'count',
 }: LikeButtonProps) {
   const [count, setCount] = useState(initialCount);
   const [isLiked, setIsLiked] = useState(initialIsLiked);
@@ -23,19 +23,19 @@ export default function LikeButton({
     // Optimistic Update - 먼저 UI 업데이트
     const newIsLiked = !isLiked;
     setIsLiked(newIsLiked);
-    setCount((prev) => newIsLiked ? prev + 1 : prev - 1);
+    setCount((prev) => (newIsLiked ? prev + 1 : prev - 1));
 
     setIsLoading(true);
     try {
       // TODO: 실제 API 호출
       // await fetch('/api/like', { method: 'POST', body: JSON.stringify({ projectId }) });
-      
+
       // 임시 딜레이 (실제로는 API 응답 대기)
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
     } catch (error) {
       // 실패 시 롤백
       setIsLiked(!newIsLiked);
-      setCount((prev) => newIsLiked ? prev - 1 : prev + 1);
+      setCount((prev) => (newIsLiked ? prev - 1 : prev + 1));
       console.error('좋아요 실패:', error);
     } finally {
       setIsLoading(false);
@@ -87,7 +87,9 @@ export default function LikeButton({
       >
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41.81 4.5 2.09C12.09 4.81 13.76 4 15.5 4 18 4 20 6 20 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
       </svg>
-      <span className={`text-sm font-medium ${isLiked ? 'text-rose-500' : 'text-gray-700'}`}>
+      <span
+        className={`text-sm font-medium ${isLiked ? 'text-rose-500' : 'text-gray-700'}`}
+      >
         {count}
       </span>
     </button>
