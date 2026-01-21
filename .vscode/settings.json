@@ -1,0 +1,11 @@
+{
+  "editor.fontFamily": "JetBrains Mono, Fira Code, Cascadia Code, SF Mono, Menlo, Monaco, Consolas, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "500",
+  "editor.fontSize": 16,
+  "editor.lineHeight": 1.4,
+
+  // 들여쓰기 너비를 넓혀 가독성 개선
+  "editor.tabSize": 4,
+  "prettier.tabWidth": 4
+}
