@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import ProjectCard from './projectCard';
+import CategoryList from './categoryList';
 
 const projectMock = {
   data: [
@@ -506,24 +507,12 @@ export default function ProjectList() {
 
   return (
     <div className="w-full">
-      {/* 카테고리 필터 */}
-      <div className="px-5 mb-6">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedCategory === category
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
+      {/* 카테고리 선택 버튼 */}
+      <CategoryList
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
 
       {/* 프로젝트 그리드 */}
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5 w-full">

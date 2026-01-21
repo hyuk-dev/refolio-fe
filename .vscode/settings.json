@@ -6,6 +6,7 @@
   "editor.lineHeight": 1.4,
 
   // 들여쓰기 너비를 넓혀 가독성 개선
-  "editor.tabSize": 4,
-  "prettier.tabWidth": 4
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "prettier.tabWidth": 2
 }
