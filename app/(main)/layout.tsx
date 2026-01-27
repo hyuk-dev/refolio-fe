@@ -1,3 +1,4 @@
+import Counter from '@/components/counter';
 import Header from '@/components/header';
 import UserMenu from '@/components/userMenu';
 import React from 'react';
@@ -13,6 +14,7 @@ export default function MainLayout({
         <Header />
         <UserMenu />
       </div>
+      <Counter />
       <div className="w-full max-w-[1580px] px-4 sm:px-6 md:px-10 lg:px-0">
         {children}
       </div>

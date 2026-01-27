@@ -1,13 +1,8 @@
 'use client';
 
-import { useState, Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import Image from 'next/image';
 import Tag from '@/components/tag';
-
-const RichTextEditor = dynamic(() => import('@/components/richTextEditor'), {
-  ssr: false,
-});
 
 export default function NewProjectPage() {
   const [title, setTitle] = useState('');
@@ -123,10 +118,12 @@ export default function NewProjectPage() {
           <label className="block text-lg font-semibold text-gray-900 mb-3">
             상세 내용
           </label>
-          <RichTextEditor
+          <textarea
             value={detailedDescription}
-            onChange={(value) => setDetailedDescription(value)}
+            onChange={(e) => setDetailedDescription(e.target.value)}
             placeholder="프로젝트의 주요 기능, 기술적 특징, 개발 과정 등을 상세히 작성해주세요"
+            rows={10}
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
           />
         </div>
 

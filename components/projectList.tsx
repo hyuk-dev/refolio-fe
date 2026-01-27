@@ -1,6 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProjectCard from './projectCard';
+import CategoryList from './categoryList';
+import Pagination from './pagination';
 
 const projectMock = {
   data: [
@@ -489,6 +491,34 @@ const projectMock = {
 
 export default function ProjectList() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+
+  // 화면 크기에 따른 페이지당 아이템 개수 설정
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width >= 1280) {
+        // xl: 4열 x 2행 = 8개
+        setItemsPerPage(8);
+      } else if (width >= 768) {
+        // md-lg: 2-3열 x 2행 = 6개
+        setItemsPerPage(6);
+      } else {
+        // sm: 1열 x 4행 = 4개
+        setItemsPerPage(4);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 카테고리 변경 시 첫 페이지로 이동
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
 
   // 모든 카테고리 추출
   const categories = [
@@ -504,30 +534,32 @@ export default function ProjectList() {
           (project) => project.category === selectedCategory
         );
 
+  // 페이지네이션 계산
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProjects = filteredProjects.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // 모바일에서만 스크롤 상단 이동
+    if (window.innerWidth < 768) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full">
-      {/* 카테고리 필터 */}
-      <div className="px-5 mb-6">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedCategory === category
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
+      {/* 카테고리 선택 버튼 */}
+      <CategoryList
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
 
       {/* 프로젝트 그리드 */}
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-5 w-full">
-        {filteredProjects.map((project) => {
+        {currentProjects.map((project) => {
           return (
             <div key={project.id}>
               <ProjectCard {...project} />
@@ -541,6 +573,15 @@ export default function ProjectList() {
         <div className="text-center py-20 text-gray-500">
           해당 카테고리에 프로젝트가 없습니다.
         </div>
+      )}
+
+      {/* 페이지네이션 */}
+      {filteredProjects.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       )}
     </div>
   );
